@@ -1,3 +1,23 @@
+<script setup>
+function cartBtn() {
+  $("body").css("overflow", "hidden"),
+    $(".cart-sidebar").addClass("active"),
+    $(".cart-close").on("click", function () {
+      $("body").css("overflow", "inherit"),
+        $(".cart-sidebar").removeClass("active"),
+        $(".backdrop").fadeOut();
+    });
+}
+function catBtn() {
+  $("body").css("overflow", "hidden"),
+    $(".category-sidebar").addClass("active"),
+    $(".category-close").on("click", function () {
+      $("body").css("overflow", "inherit"),
+        $(".category-sidebar").removeClass("active"),
+        $(".backdrop").fadeOut();
+      });
+}
+</script>
 <template>
   <div>
     <aside class="category-sidebar">
@@ -136,7 +156,7 @@
 
     <aside class="nav-sidebar">
       <div class="nav-header">
-        <a href="#"><img src="./assets/images/logo.png" alt="logo" /></a
+        <a href="#"><img src="@/assets/images/logo.png" alt="logo" /></a
         ><button class="nav-close"><i class="icofont-close"></i></button>
       </div>
       <div class="nav-content">
@@ -178,10 +198,10 @@
         aria-current="page"
         ><i class="fas fa-home"></i><span>Home</span></a
       >
-      <button class="cate-btn" title="Category List">
+      <button @click="catBtn" class="cate-btn" title="Category List">
         <i class="fas fa-list"></i><span>category</span>
       </button>
-      <button class="cart-btn" title="Cartlist">
+      <button class="cart-btn" @click="cartBtn" title="Cartlist">
         <i class="fas fa-shopping-basket"></i><span>Cart</span><sup>2</sup>
       </button>
       <a href="/my-wishist" class="" title="Wishlist"
@@ -193,7 +213,5 @@
     </div>
   </div>
 </template>
-<script>
-export default {};
-</script>
+
 <style lang=""></style>

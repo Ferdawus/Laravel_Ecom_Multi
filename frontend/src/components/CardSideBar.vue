@@ -1,3 +1,8 @@
+<script setup>
+const couponBtn = () => {
+  $(".coupon-btn").hide(), $(".coupon-form").css("display", "flex");
+};
+</script>
 <template>
   <div>
     <aside class="cart-sidebar">
@@ -11,7 +16,7 @@
         <li class="cart-item">
           <div class="cart-media">
             <a href="#"
-              ><img src="./assets/images/product/01.jpg" alt="product" /></a
+              ><img src="@/assets/images/product/01.jpg" alt="product" /></a
             ><button class="cart-delete">
               <i class="far fa-trash-alt"></i>
             </button>
@@ -42,7 +47,7 @@
         <li class="cart-item">
           <div class="cart-media">
             <a href="#"
-              ><img src="./assets/images/product/02.jpg" alt="product" /></a
+              ><img src="@/assets/images/product/02.jpg" alt="product" /></a
             ><button class="cart-delete">
               <i class="far fa-trash-alt"></i>
             </button>
@@ -73,7 +78,7 @@
         <li class="cart-item">
           <div class="cart-media">
             <a href="#"
-              ><img src="./assets/images/product/03.jpg" alt="product" /></a
+              ><img src="@/assets/images/product/03.jpg" alt="product" /></a
             ><button class="cart-delete">
               <i class="far fa-trash-alt"></i>
             </button>
@@ -104,7 +109,7 @@
         <li class="cart-item">
           <div class="cart-media">
             <a href="#"
-              ><img src="./assets/images/product/04.jpg" alt="product" /></a
+              ><img src="@/assets/images/product/04.jpg" alt="product" /></a
             ><button class="cart-delete">
               <i class="far fa-trash-alt"></i>
             </button>
@@ -135,7 +140,7 @@
         <li class="cart-item">
           <div class="cart-media">
             <a href="#"
-              ><img src="./assets/images/product/05.jpg" alt="product" /></a
+              ><img src="@/assets/images/product/05.jpg" alt="product" /></a
             ><button class="cart-delete">
               <i class="far fa-trash-alt"></i>
             </button>
@@ -165,7 +170,9 @@
         </li>
       </ul>
       <div class="cart-footer">
-        <button class="coupon-btn">Do you have a coupon code?</button>
+        <button class="coupon-btn" @click="couponBtn">
+          Do you have a coupon code?
+        </button>
         <form class="coupon-form">
           <input type="text" placeholder="Enter your coupon code" /><button
             type="submit"
@@ -181,7 +188,5 @@
     </aside>
   </div>
 </template>
-<script>
-export default {};
-</script>
+
 <style lang=""></style>
