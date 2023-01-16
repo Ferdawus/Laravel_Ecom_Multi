@@ -1,3 +1,20 @@
+<script setup>
+import { useAuth } from "@/stores/auth";
+import { reactive, ref } from "@vue/reactivity";
+
+const auth = useAuth();
+const form = reactive({
+  phone: "",
+  password: "",
+});
+const showPassword = ref(false);
+const toggleShow = () => {
+  showPassword.value = !showPassword.value;
+};
+const onSubmit = async () => {
+  await auth.login(form);
+};
+</script>
 <template>
   <div>
     <section class="user-form-part">
@@ -10,22 +27,30 @@
                 <p>Use your credentials to access</p>
               </div>
               <div class="user-form-group" id="axiosForm">
-                <form class="user-form">
+                <form class="user-form" @submit.prevent="onSubmit">
                   <!--v-if-->
                   <div class="form-group">
                     <input
                       type="text"
                       class="form-control"
                       placeholder="phone no"
+                      v-model="form.phone"
                     /><!--v-if-->
                   </div>
                   <div class="form-group">
                     <input
-                      type="password"
+                      :type="showPassword ? 'text' : 'password'"
                       class="form-control"
                       placeholder="password"
-                    /><span class="view-password"
-                      ><i class="fas text-success fa-eye"></i></span
+                      v-model="form.password"
+                    /><span class="view-password" @click="toggleShow"
+                      ><i
+                        class="fas text-success"
+                        :class="{
+                          'fa-eye-slash': showPassword,
+                          'fa-eye': !showPassword,
+                        }"
+                      ></i></span
                     ><!--v-if-->
                   </div>
                   <div class="form-check mb-3">
@@ -53,7 +78,10 @@
             </div>
             <div class="user-form-remind">
               <p>
-                Don't have any account?<router-link :to="{name:'user.register'}" href="/auth/register" class=""
+                Don't have any account?<router-link
+                  :to="{ name: 'user.register' }"
+                  href="/auth/register"
+                  class=""
                   >register here</router-link
                 >
               </p>
@@ -65,9 +93,7 @@
     </section>
   </div>
 </template>
-<script>
-export default {};
-</script>
+
 <style>
 @import "@/assets/css/user-auth.css";
 </style>
