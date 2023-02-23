@@ -3,6 +3,8 @@ import axios from "axios";
 
 
 export const useAuth = defineStore("auth",{
+
+    state:() =>({ errors:{}, }),
     actions:{
         async login(formData){
             // console.log(formData);
@@ -10,8 +12,10 @@ export const useAuth = defineStore("auth",{
             .then(res => {
                 console.log(res)
             })
-            .catch(err => {
-                console.error(err); 
+            .catch(error => {
+                if (error.response.data) {
+                    this.errors = error.response.data.errors                        
+                }
             })
         }
     }
