@@ -19,8 +19,10 @@ const showPassword = ref(false);
 const toggleShow = () => {
   showPassword.value = !showPassword.value;
 };
-const onSubmit = async () => {
-  await auth.login(form);
+const onSubmit = async (values, { setFieldError }) => {
+  // await auth.login(form);
+  // console.log(actions);
+  setFieldError("phone", "test message");
 };
 </script>
 <template>
@@ -72,6 +74,7 @@ const onSubmit = async () => {
                         }"
                       ></i
                     ></span>
+                    <!-- <ErrorMessage name="password" /> -->
                     <span class="text-danger" v-if="errors.password">{{
                       errors.password[0]
                     }}</span>
